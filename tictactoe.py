@@ -99,7 +99,7 @@ def check_for_winner():
   else:
     winner = None
 
-# Check the rows for a win
+# Check the rows for a winner
 def check_rows():
   # Set global variables
   global game_still_on
@@ -117,7 +117,7 @@ def check_rows():
     return board[3] 
   elif row_3:
     return board[6] 
-  # Or return None if no winner
+  # Or return None if no winner in the game
   else:
     return None
 
