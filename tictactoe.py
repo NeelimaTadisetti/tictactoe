@@ -1,5 +1,5 @@
 
-# Print Board to hold game board data (Place holder)
+# Print Board to hold game board data (Place holder for player input)
 board = ["-", "-", "-",
          "-", "-", "-",
          "-", "-", "-"]
@@ -8,10 +8,10 @@ board = ["-", "-", "-",
 # Checking if the game still on 
 game_still_on = True
 
-# setting winner of the game
+# setting and initilizing winner of the game
 winner = None
 
-# Deciding who's going to play first (X goes first)
+# Current Player selection (X goes first)
 current_player = "X"
 
 # ------------- Functions ---------------
@@ -19,7 +19,7 @@ current_player = "X"
 # Main function for tic tac toe game play
 def play_game():
 
-  # user to show the initial game board
+  # Display the initial game board
   display_board()
 
   # Looping until the game stops (winner or tie)
@@ -50,21 +50,21 @@ def display_board():
   # Function to organise turns for each player 
 def handle_turn(player):
 
-  # Choosing the player position
+  # Choosing the player and corresponding position on the board
   print(player + "'s turn.")
   position = input("Choose a position from 1-9: ")
 
 # Checking valid user input to the board
-  valid = False
+  valid = False  # set default to false
   while not valid:
-    # Ensure all entries in the board are valid  
+    # Ensure all entries of the board are valid  
     while position not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
       position = input("Choose a position from 1-9: ")
   
-   # Position the correct index in the board list
+   # Position the correct index of the board list for the given number 1-9 of user input
     position = int(position) - 1
 
-# Checking if entry is available if not alert player to try choose different position
+# Checking if entry is available if not alert the player to try choose different position on the board
     if board[position] == "-":
       valid = True
     else:
@@ -76,12 +76,12 @@ def handle_turn(player):
   # Display game board with players entries
   display_board()
 
-# Checking the game status after each entry
+# Checking the game status after each player entry
 def check_if_game_over():
-  check_for_winner()
-  check_for_tie()
+    check_for_winner()
+    check_for_tie()
 
-# check if any winnings across the board
+# check if any winnings across the board 
 def check_for_winner():
   # Set global variables
   global winner
