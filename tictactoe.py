@@ -38,7 +38,8 @@ def play_game():
     print(winner + " won.")
   elif winner == None:
     print("Tie.")
-
+  else:
+      replay()
  # Display Game board along with guided position for the player input.
 def display_board():
   print("\n")
@@ -185,6 +186,14 @@ def flip_player():
   # Or if the current player is O, change to X
   elif current_player == "O":
     current_player = "X"
+
+  # replay game again
+def replay():
+    playAgain = input("Do you want to play again (y/n) ? ")
+    if playAgain == 'y':
+        play_game()
+    if playAgain== 'n':
+        print('Good Bye')
 
 # Start Execution of tic tac toe game by calling this function
 play_game()
