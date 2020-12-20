@@ -6,9 +6,9 @@ board = ["-", "-", "-",
 
 # ---------Initialising global Variables  -----------
 # Checking if the game still on 
-game_still_on = True
+game_continues = True
 
-# setting and initilizing winner of the game
+# Determines winner of the game
 winner = None
 
 # Current Player selection (X goes first)
@@ -16,14 +16,14 @@ current_player = "X"
 
 # ------------- Functions ---------------
 
-# Main function for tic tac toe game play
+# Main function that runs and plays tic tac toe game
 def play_game():
 
   # Display the initial game board
   display_board()
 
   # Looping until the game stops (winner or tie)
-  while game_still_on:
+  while game_continues:
 
     #  Handling each player turns
     handle_turn(current_player)
@@ -86,7 +86,7 @@ def check_if_game_over():
 def check_for_winner():
   # Set global variables
   global winner
-  # Check if there was a winner anywhere
+  # Check if there was a winner anywhere with match
   row_winner = check_rows()
   column_winner = check_columns()
   diagonal_winner = check_diagonals()
@@ -100,17 +100,21 @@ def check_for_winner():
   else:
     winner = None
 
-# Check the rows for a winner
+# Check three rows of the board for a winner
+# if any row has all equal values and is not empty, player has won
+# if any row has unequal values and is empty, player has drawn, loss, or is still playing the game
+# return the winner if a winning row is found
+# return None if no winner is found in the three rows
 def check_rows():
   # Set global variables
-  global game_still_on
+  global game_continues
   # Checking rows with same value(X or O) and not empty
   row_1 = board[0] == board[1] == board[2] != "-"
   row_2 = board[3] == board[4] == board[5] != "-"
   row_3 = board[6] == board[7] == board[8] != "-"
   # If any row with matching value, show the result with win
   if row_1 or row_2 or row_3:
-    game_still_on = False
+    game_continues = False
   # Return the winner
   if row_1:
     return board[0] 
@@ -122,17 +126,21 @@ def check_rows():
   else:
     return None
 
-# Check the columns for a win
+# Check three columns of the board for a winner
+# if any column has all equal values and is not empty, player has won
+# if any column has unequal values and is empty, player has drawn, loss, or is still playing the game
+# return the winner if a winning column is found
+# return None if no winner is found in the three columns
 def check_columns():
   # Set global variables
-  global game_still_on
+  global game_continues
   # Checking column with same value(X or O) and not empty
   column_1 = board[0] == board[3] == board[6] != "-"
   column_2 = board[1] == board[4] == board[7] != "-"
   column_3 = board[2] == board[5] == board[8] != "-"
   # If any column with matching value, show the result with win
   if column_1 or column_2 or column_3:
-    game_still_on = False
+    game_continues = False
   # Return the winner
   if column_1:
     return board[0] 
@@ -144,16 +152,20 @@ def check_columns():
   else:
     return None
 
-# Check the diagonals for a winner
+# Check two diagonals of board for a winner
+# if any of the two diagonals has all equal values and is not empty, player has won
+# if any of the two diagonals has unequal values and is empty, player has drawn, loss, or is still playing the game
+# return the winner if a winning diagonal is found
+# return None if no winner is found in the two diagonals
 def check_diagonals():
   # Set global variables
-  global game_still_on
+  global game_continues
   # Checking column with same value(X or O) and not empty
   diagonal_1 = board[0] == board[4] == board[8] != "-"
   diagonal_2 = board[2] == board[4] == board[6] != "-"
   # If any row with matching value, show the result with win
   if diagonal_1 or diagonal_2:
-    game_still_on = False
+    game_continues = False
   # Return the winner
   if diagonal_1:
     return board[0] 
@@ -166,10 +178,10 @@ def check_diagonals():
 # Checking if there is a tie
 def check_for_tie():
   # Set global variables
-  global game_still_on
+  global game_continues
   # If board is full
   if "-" not in board:
-    game_still_on = False
+    game_continues = False
     return True
   # Else there is no tie
   else:
@@ -187,7 +199,7 @@ def flip_player():
   elif current_player == "O":
     current_player = "X"
 
-  # replay game again
+# replay game again
 def replay():
     playAgain = input("Do you want to play again (y/n) ? ")
     if playAgain == 'y':
@@ -195,5 +207,5 @@ def replay():
     if playAgain== 'n':
         print('Good Bye')
 
-# Start Execution of tic tac toe game by calling this function
+# Start Execution of tic tac toe game by calling function
 play_game()
