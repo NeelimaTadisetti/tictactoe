@@ -1,5 +1,7 @@
 
-# Print Board to hold game board data (Place holder for player input)
+#   ************** TIC-TAC-TOE Project **************
+
+# Print Board to hold game board data (Player input Place holder)
 board = ["-", "-", "-",
          "-", "-", "-",
          "-", "-", "-"]
