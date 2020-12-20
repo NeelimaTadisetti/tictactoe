@@ -148,7 +148,7 @@ def check_columns():
     return board[1] 
   elif column_3:
     return board[2] 
-  # Or return None if no win
+  # Or return None if no winner
   else:
     return None
 
